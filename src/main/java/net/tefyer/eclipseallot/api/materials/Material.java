@@ -1,5 +1,6 @@
 package net.tefyer.eclipseallot.api.materials;
 
+import com.tterrag.registrate.util.entry.ItemEntry;
 import lombok.Getter;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.item.ItemStack;
@@ -25,12 +26,12 @@ public class Material {
     public Material register() {
         for(PropertyKey key : properties.getKEYS()){
             switch (key){
-                case INGOT -> registerItem(id+"_ingot");
-                case RAW_INGOT -> registerItem("raw_"+id+"_ingot");
-                case NUGGET ->  registerItem(id+"_nugget");
-                case DUST ->  registerItem(id+"_dust");
-                case WOOD ->  registerItem(id+"_wood");
-                case GEM ->  registerItem(id+"_gem");
+                case INGOT -> MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_ingot"));
+                case RAW_INGOT -> MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem("raw_"+id+"_ingot"));
+                case NUGGET ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_nugget"));
+                case DUST ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_dust"));
+                case WOOD ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_wood"));
+                case GEM ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_gem"));
             }
         }
         return this;
@@ -56,12 +57,12 @@ public class Material {
         else return getMaterialARGB(0);
     }
 
-    private void registerItem(String s) {
-        MaterialRegistry.REGISTRATE
+    private ItemEntry<MaterialItem> registerItem(String s) {
+        return MaterialRegistry.REGISTRATE
                 .item(s,
-                        properties1 -> new MaterialItem(properties, this))
+                        properties1 -> new MaterialItem(s,properties, this))
                 .lang(APIUtils.Formatting.toEnglishName(s))
-                .color(() -> MaterialItem::tintColor);
+                .color(() -> MaterialItem::tintColor).register();
     }
 
     public static class Builder{
@@ -130,7 +131,7 @@ public class Material {
 
 
         public Material build(){
-            return new Material(id,properties);
+            return MaterialRegistry.REGISTRATE.addMaterials(new Material(id,properties));
         }
     }
 }

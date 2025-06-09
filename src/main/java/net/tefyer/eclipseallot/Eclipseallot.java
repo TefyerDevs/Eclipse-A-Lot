@@ -14,7 +14,6 @@ import net.tefyer.eclipseallot.proxy.ClientProxy;
 import net.tefyer.eclipseallot.proxy.CommonProxy;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(Eclipseallot.MODID)
 public class Eclipseallot {
 

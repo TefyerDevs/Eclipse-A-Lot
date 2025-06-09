@@ -8,13 +8,13 @@ import net.tefyer.eclipseallot.registry.MaterialRegistry;
 
 public class CommonProxy {
     public CommonProxy() {
-        // used for forge events (ClientProxy + CommonProxy)
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         eventBus.register(this);
 
     }
     public static void init(){
         MaterialRegistry.init();
+        MaterialRegistry.REGISTRATE.registerMaterials();
     }
 
     @SubscribeEvent

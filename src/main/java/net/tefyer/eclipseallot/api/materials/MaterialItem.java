@@ -10,10 +10,13 @@ public class MaterialItem extends Item {
     MaterialProperties properties;
     @Getter
     Material material;
-    public MaterialItem(MaterialProperties properties, Material material) {
+    @Getter
+    String id;
+    public MaterialItem(String id,MaterialProperties properties, Material material) {
         super(new Item.Properties());
         this.properties = properties;
         this.material = material;
+        this.id = id;
     }
 
     public static ItemColor tintColor() {
@@ -23,5 +26,9 @@ public class MaterialItem extends Item {
             }
             return -1;
         };
+    }
+
+    public String getItemId() {
+        return id;
     }
 }

@@ -15,9 +15,8 @@ public class MaterialRegistry {
             .ingot()
             .primaryColour(0xb734eb)
             .secondaryColoor(0x521dcf)
-            .build().register();
+            .build();
 
-    public static void init(){
-    }
+    public static void init(){}
 
 }
