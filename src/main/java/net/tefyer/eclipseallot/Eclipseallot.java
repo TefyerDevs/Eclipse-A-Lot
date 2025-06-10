@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.proxy.ClientProxy;
 import net.tefyer.eclipseallot.proxy.CommonProxy;
@@ -21,7 +22,7 @@ public class Eclipseallot {
     public static final String MODID = "eclipseallot";
     public static final String NAME = "Eclipse A Lot";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     public Eclipseallot() {
         Eclipseallot.init();
@@ -35,6 +36,14 @@ public class Eclipseallot {
 
     public static ResourceLocation id(String name){
         return ResourceLocation.fromNamespaceAndPath(MODID, APIUtils.Formatting.toLowerCaseUnder(name));
+    }
+
+
+    /**
+     * @return if the FML environment is a client
+     */
+    public static boolean isClientSide() {
+        return FMLEnvironment.dist.isClient();
     }
 
 

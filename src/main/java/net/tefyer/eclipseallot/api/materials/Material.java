@@ -3,6 +3,7 @@ package net.tefyer.eclipseallot.api.materials;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import lombok.Getter;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.property.PropertyKey;
@@ -23,19 +24,6 @@ public class Material {
         this.properties = properties;
     }
 
-    public Material register() {
-        for(PropertyKey key : properties.getKEYS()){
-            switch (key){
-                case INGOT -> MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_ingot"));
-                case RAW_INGOT -> MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem("raw_"+id+"_ingot"));
-                case NUGGET ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_nugget"));
-                case DUST ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_dust"));
-                case WOOD ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_wood"));
-                case GEM ->  MaterialRegistry.REGISTRATE.addItem(id+"_ingot", registerItem(id+"_gem"));
-            }
-        }
-        return this;
-    }
     /**
      * Gets a specific color layer in ARGB.
      *
@@ -57,13 +45,28 @@ public class Material {
         else return getMaterialARGB(0);
     }
 
-    private ItemEntry<MaterialItem> registerItem(String s) {
-        return MaterialRegistry.REGISTRATE
-                .item(s,
-                        properties1 -> new MaterialItem(s,properties, this))
-                .lang(APIUtils.Formatting.toEnglishName(s))
-                .color(() -> MaterialItem::tintColor).register();
+    public boolean isNull() {
+        return this == MaterialRegistry.NULL;
     }
+
+
+    public String getName() {
+        return properties.getResourceLocation().getPath();
+    }
+
+    public String getModid() {
+        return properties.getResourceLocation().getNamespace();
+    }
+
+
+    public boolean hasProperty(PropertyKey propertyKey) {
+        return properties.hasProperty(propertyKey);
+    }
+
+    public MaterialIconSet getMateralIconSet() {
+        return properties.getIconSet();
+    }
+
 
     public static class Builder{
 
@@ -75,6 +78,9 @@ public class Material {
         public String id;
         public MaterialProperties properties;
 
+        public Builder(ResourceLocation resourceLocation) {
+            setProperties(new MaterialProperties(resourceLocation));
+        }
 
         public Builder setId(String id){
             this.id = id;
@@ -131,7 +137,7 @@ public class Material {
 
 
         public Material build(){
-            return MaterialRegistry.REGISTRATE.addMaterials(new Material(id,properties));
+            return MaterialRegistry.MATERIAL.put(id,new Material(id,properties));
         }
     }
 }

@@ -4,6 +4,8 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.tefyer.eclipseallot.registry.CreativeModeTabs;
+import net.tefyer.eclipseallot.registry.ItemRegistry;
 import net.tefyer.eclipseallot.registry.MaterialRegistry;
 
 public class CommonProxy {
@@ -14,7 +16,8 @@ public class CommonProxy {
     }
     public static void init(){
         MaterialRegistry.init();
-        MaterialRegistry.REGISTRATE.registerMaterials();
+        CreativeModeTabs.init();
+        ItemRegistry.init();
     }
 
     @SubscribeEvent
