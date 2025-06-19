@@ -12,6 +12,7 @@ import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
 import net.tefyer.eclipseallot.api.materials.MaterialIconType;
 import net.tefyer.eclipseallot.api.registrate.ERegistrate;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
+import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 import net.tefyer.eclipseallot.client.pack.EPackSource;
 import net.tefyer.eclipseallot.registry.CreativeModeTabs;
@@ -35,6 +36,8 @@ public class CommonProxy {
         ItemRegistry.init();
 
         REGISTRATE.registerRegistrate();
+
+        EDataGen.init();
     }
 
     @SubscribeEvent

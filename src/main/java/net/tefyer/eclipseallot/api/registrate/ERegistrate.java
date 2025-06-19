@@ -3,6 +3,7 @@ package net.tefyer.eclipseallot.api.registrate;
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.Builder;
 import com.tterrag.registrate.builders.ItemBuilder;
+import com.tterrag.registrate.builders.NoConfigBuilder;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
@@ -10,9 +11,12 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,6 +33,7 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ERegistrate extends Registrate {
@@ -57,6 +62,10 @@ public class ERegistrate extends Registrate {
         this.currentTab = currentTab.get();
     }
 
+    public <P> NoConfigBuilder<CreativeModeTab, CreativeModeTab, P> defaultCreativeTab(P parent, String name,
+                                                                                       Consumer<CreativeModeTab.Builder> config) {
+        return createCreativeModeTab(parent, name, config);
+    }
     public boolean isInCreativeTab(RegistryEntry<?> entry, RegistryEntry<CreativeModeTab> tab) {
         return TAB_LOOKUP.get(entry) == tab;
     }
@@ -64,7 +73,17 @@ public class ERegistrate extends Registrate {
     public void setCreativeTab(RegistryEntry<?> entry, @Nullable RegistryEntry<CreativeModeTab> tab) {
         TAB_LOOKUP.put(entry, tab);
     }
-
+    protected <
+            P> NoConfigBuilder<CreativeModeTab, CreativeModeTab, P> createCreativeModeTab(P parent, String name,
+                                                                                          Consumer<CreativeModeTab.Builder> config) {
+        return this.generic(parent, name, Registries.CREATIVE_MODE_TAB, () -> {
+            var builder = CreativeModeTab.builder()
+                    .icon(() -> getAll(Registries.ITEM).stream().findFirst().map(ItemEntry::cast)
+                            .map(ItemEntry::asStack).orElse(new ItemStack(Items.AIR)));
+            config.accept(builder);
+            return builder.build();
+        });
+    }
     protected <R,
             T extends R> RegistryEntry<T> accept(String name, ResourceKey<? extends Registry<R>> type,
                                                  Builder<R, T, ?, ?> builder, NonNullSupplier<? extends T> creator,

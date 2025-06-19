@@ -3,6 +3,8 @@ package net.tefyer.eclipseallot.api.materials;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import lombok.Getter;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tefyer.eclipseallot.api.APIUtils;
@@ -16,12 +18,17 @@ public class Material {
     @Getter
     private String id;
 
+
     @Getter
     private MaterialProperties properties;
 
     protected Material(String id, MaterialProperties properties) {
-        this.id = id;
         this.properties = properties;
+        this.id = id;
+    }
+
+    public String getName(){
+        return properties.getResourceLocation().getPath();
     }
 
     /**
@@ -50,10 +57,6 @@ public class Material {
     }
 
 
-    public String getName() {
-        return properties.getResourceLocation().getPath();
-    }
-
     public String getModid() {
         return properties.getResourceLocation().getNamespace();
     }
@@ -67,6 +70,13 @@ public class Material {
         return properties.getIconSet();
     }
 
+    public String getUnlocalizedName() {
+        return properties.getResourceLocation().toLanguageKey("material");
+    }
+    public MutableComponent getLocalizedName() {
+        return Component.translatable(getUnlocalizedName());
+    }
+
 
     public static class Builder{
 
@@ -75,17 +85,13 @@ public class Material {
          */
         private boolean averageRGB = false;
 
-        public String id;
+        public String name;
         public MaterialProperties properties;
 
         public Builder(ResourceLocation resourceLocation) {
             setProperties(new MaterialProperties(resourceLocation));
         }
 
-        public Builder setId(String id){
-            this.id = id;
-            return this;
-        }
 
         public Builder setProperties(MaterialProperties properties){
             this.properties = properties;
@@ -143,7 +149,8 @@ public class Material {
 
 
         public Material build(){
-            return new Material(id,properties);
+            return new Material(properties.getResourceLocation().getPath(),properties);
         }
+
     }
 }

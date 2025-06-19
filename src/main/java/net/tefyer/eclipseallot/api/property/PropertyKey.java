@@ -6,5 +6,6 @@ public enum PropertyKey {
     WOOD,
     NUGGET,
     GEM,
-    DUST;
+    DUST,
+    POLYMER;
 }

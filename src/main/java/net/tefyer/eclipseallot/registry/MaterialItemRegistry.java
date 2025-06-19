@@ -34,6 +34,7 @@ public class MaterialItemRegistry {
                         properties -> new TagPrefixItem(properties,tagPrefix,material))
                 .color(() -> TagPrefixItem::tintColor)
                 .onRegister(TagPrefixItem::onRegister)
+                .model(NonNullBiConsumer.noop())
                 .properties(p -> p.stacksTo(tagPrefix.maxStackSize()))
                 .setData(ProviderType.LANG, NonNullBiConsumer.noop())
                 .register());

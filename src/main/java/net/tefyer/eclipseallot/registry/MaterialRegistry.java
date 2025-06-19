@@ -13,7 +13,6 @@ public class MaterialRegistry {
     public static final Material NULL = new Material.Builder(Eclipseallot.id("null")).build();
 
     public static final Material ECLIPSIUM_ALLOY = new Material.Builder(Eclipseallot.id("eclpisium_alloy"))
-            .setId("eclpisium_alloy")
             .ingot()
             .dust()
             .primaryColour(0xb734eb)
@@ -22,7 +21,6 @@ public class MaterialRegistry {
             .build();
 
     public static final Material ESTATIUM_ALLOY = new Material.Builder(Eclipseallot.id("estatium_alloy"))
-            .setId("estatium_alloy")
             .ingot()
             .primaryColour(0xf07c22)
             .secondaryColoor(0x7d3d0b)

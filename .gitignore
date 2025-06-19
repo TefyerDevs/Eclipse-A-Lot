@@ -2,3 +2,4 @@
 /.gradle/
 /run-data/
 /build/
+/src/generated/resources/.cache/

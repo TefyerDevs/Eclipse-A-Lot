@@ -1,10 +1,13 @@
 package net.tefyer.eclipseallot.api.tag;
 
 import com.google.common.collect.Table;
+import com.lowdragmc.lowdraglib.utils.LocalizationUtils;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -17,6 +20,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
+import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
@@ -57,6 +61,10 @@ public class TagPrefix {
     @Setter
     private @Nullable Predicate<Material> generationCondition;
 
+    @Nullable
+    @Getter
+    @Setter
+    private BiConsumer<Material, List<Component>> tooltip;
     private final Map<Material, Supplier<? extends ItemLike>[]> ignoredMaterials = new HashMap<>();
     protected final List<TagType> tags = new ArrayList<>();
     @Getter
@@ -158,6 +166,31 @@ public class TagPrefix {
 
     public int maxStackSize() {
         return 64;
+    }
+
+    public String getUnlocalizedName() {
+        return "tagprefix." + APIUtils.Formatting.toLowerCaseUnderscore(name);
+    }
+    public MutableComponent getLocalizedName(Material material) {
+        return Component.translatable(getUnlocalizedName(material), material.getLocalizedName());
+    }
+
+    public String getUnlocalizedName(Material material) {
+        String formattedPrefix = APIUtils.Formatting.toLowerCaseUnderscore(this.name);
+        String matSpecificKey = String.format("item.%s.%s", material.getModid(),
+                this.idPattern.formatted(material.getName()));
+        if (LocalizationUtils.exist(matSpecificKey)) {
+            return matSpecificKey;
+        }
+        if (material.hasProperty(PropertyKey.POLYMER)) {
+            String localizationKey = String.format("tagprefix.polymer.%s", formattedPrefix);
+            // Not every polymer tag prefix gets a special name
+            if (LocalizationUtils.exist(localizationKey)) {
+                return localizationKey;
+            }
+        }
+
+        return getUnlocalizedName();
     }
 
 
