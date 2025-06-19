@@ -9,6 +9,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.tefyer.eclipseallot.Eclipseallot;
 import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -87,6 +88,58 @@ public class APIUtils {
          */
         public static TagKey<Item> createItemTag(String path, boolean vanilla) {
             return createTag(BuiltInRegistries.ITEM, path, vanilla);
+        }
+    }
+    public static class Number{
+        /**
+         * <p/>
+         * This is worth exactly one normal Item.
+         * This Constant can be divided by many commonly used Numbers such as
+         * 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 15, 16, 18, 20, 21, 24, ... 64 or 81
+         * without loosing precision and is for that reason used as Unit of Amount.
+         * But it is also small enough to be multiplied with larger Numbers.
+         * <p/>
+         * This is used to determine the amount of Material contained inside a prefixed Ore.
+         * For example Nugget = M / 9 as it contains out of 1/9 of an Ingot.
+         */
+        public static final long M = 3628800;
+
+        private static final int SMALL_DOWN_NUMBER_BASE = '\u2080';
+        private static final int SMALL_UP_NUMBER_BASE = '\u2070';
+        private static final int SMALL_UP_NUMBER_ONE = '\u00B9';
+        private static final int SMALL_UP_NUMBER_TWO = '\u00B2';
+        private static final int SMALL_UP_NUMBER_THREE = '\u00B3';
+        private static final int NUMBER_BASE = '0';
+
+        public static String toSmallUpNumbers(String string) {
+            return checkNumbers(string, SMALL_UP_NUMBER_BASE, true);
+        }
+        public static String toSmallDownNumbers(String string) {
+            return checkNumbers(string, SMALL_DOWN_NUMBER_BASE, false);
+        }
+        @NotNull
+        private static String checkNumbers(String string, int smallUpNumberBase, boolean isUp) {
+            char[] charArray = string.toCharArray();
+            for (int i = 0; i < charArray.length; i++) {
+                int relativeIndex = charArray[i] - NUMBER_BASE;
+                if (relativeIndex >= 0 && relativeIndex <= 9) {
+                    if (isUp) {
+                        if (relativeIndex == 1) {
+                            charArray[i] = SMALL_UP_NUMBER_ONE;
+                            continue;
+                        } else if (relativeIndex == 2) {
+                            charArray[i] = SMALL_UP_NUMBER_TWO;
+                            continue;
+                        } else if (relativeIndex == 3) {
+                            charArray[i] = SMALL_UP_NUMBER_THREE;
+                            continue;
+                        }
+                    }
+                    int newChar = smallUpNumberBase + relativeIndex;
+                    charArray[i] = (char) newChar;
+                }
+            }
+            return new String(charArray);
         }
     }
 }

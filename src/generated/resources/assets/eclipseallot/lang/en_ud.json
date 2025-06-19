@@ -1,8 +1,13 @@
 {
   "itemGroup.eclipseallot.material_item": "sɯǝʇI ןɐıɹǝʇɐW ʇoꞀ Ɐ ǝsdıןɔƎ",
+  "material.eclipseallot.chaosium": "ɯnısoɐɥƆ",
   "material.eclipseallot.eclpisium_alloy": "ʎoןןⱯ ɯnısıdןɔƎ",
   "material.eclipseallot.estatium_alloy": "ʎoןןⱯ ɯnıʇɐʇsƎ",
+  "material.eclipseallot.furrisium": "ɯnısıɹɹnℲ",
+  "material.eclipseallot.normalium": "ɯnıןɐɯɹoN",
   "tagprefix.dust": "ʇsnᗡ %s",
+  "tagprefix.hot_ingot": "ʇobuI %s ʇoH",
   "tagprefix.ingot": "ʇobuI %s",
-  "tagprefix.null": "ןןnN %s"
+  "tagprefix.null": "ןןnN %s",
+  "tagprefix.plate": "ǝʇɐןԀ %s"
 }

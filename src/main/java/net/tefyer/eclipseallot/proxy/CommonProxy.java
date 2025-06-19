@@ -15,9 +15,7 @@ import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 import net.tefyer.eclipseallot.client.pack.EPackSource;
-import net.tefyer.eclipseallot.registry.CreativeModeTabs;
-import net.tefyer.eclipseallot.registry.ItemRegistry;
-import net.tefyer.eclipseallot.registry.MaterialRegistry;
+import net.tefyer.eclipseallot.registry.*;
 
 public class CommonProxy {
     public static final ERegistrate REGISTRATE = new ERegistrate(Eclipseallot.MODID);
@@ -34,6 +32,8 @@ public class CommonProxy {
         MaterialRegistry.init();
         CreativeModeTabs.init();
         ItemRegistry.init();
+        BlockRegistry.init();
+        BlockEntityRegistry.init();
 
         REGISTRATE.registerRegistrate();
 

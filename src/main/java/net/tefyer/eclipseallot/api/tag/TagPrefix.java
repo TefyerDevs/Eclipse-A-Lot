@@ -24,8 +24,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static net.tefyer.eclipseallot.api.tag.TagPrefix.Conditions.hasDustProperty;
-import static net.tefyer.eclipseallot.api.tag.TagPrefix.Conditions.hasIngotProperty;
+import static net.tefyer.eclipseallot.api.tag.TagPrefix.Conditions.*;
 
 @SuppressWarnings("unused")
 @Accessors(chain = true, fluent = true)
@@ -36,6 +35,16 @@ public class TagPrefix {
     public static void init(){
 
     }
+
+    // Regular Plate made of one Ingot/Dust.
+    public static final TagPrefix plate = new TagPrefix("plate")
+            .defaultTagPath("plates/%s")
+            .unformattedTagPath("plates")
+            .materialAmount(APIUtils.Number.M)
+            .materialIconType(MaterialIconType.plate)
+            .unificationEnabled(true)
+            .enableRecycling()
+            .generateItem(true);
 
     public static final TagPrefix dust = new TagPrefix("dust")
             .defaultTagPath("dust/%s")
@@ -50,6 +59,16 @@ public class TagPrefix {
             .generateItem(true)
             .materialIconType(MaterialIconType.ingot)
             .generationCondition(hasIngotProperty);
+
+    // A hot Ingot, which has to be cooled down by a Vacuum Freezer.
+    public static final TagPrefix ingotHot = new TagPrefix("hotIngot")
+            .idPattern("hot_%s_ingot")
+            .defaultTagPath("hot_ingots/%s")
+            .unformattedTagPath("hot_ingots")
+            .langValue("Hot %s Ingot")
+            .materialIconType(MaterialIconType.ingotHot)
+            .unificationEnabled(true)
+            .generationCondition(hasHotIngotProperty);
 
     public static final TagPrefix NULL_PREFIX = new TagPrefix("null");
 
@@ -70,15 +89,25 @@ public class TagPrefix {
     @Getter
     String name;
 
+    @Setter
     @Getter
+    private boolean generateRecycling = false;
+    @Getter
+    @Setter
     public String idPattern;
+
+    @Setter
+    @Getter
+    private boolean unificationEnabled;
 
     @Getter
     String unformattedTagPath;
 
     @Getter
     boolean generateItem;
-
+    @Getter
+    @Setter
+    private long materialAmount = -1;
     @Getter
     public final boolean invertedName;
 
@@ -168,6 +197,11 @@ public class TagPrefix {
         return 64;
     }
 
+    public TagPrefix enableRecycling() {
+        this.generateRecycling = true;
+        return this;
+    }
+
     public String getUnlocalizedName() {
         return "tagprefix." + APIUtils.Formatting.toLowerCaseUnderscore(name);
     }
@@ -195,6 +229,7 @@ public class TagPrefix {
 
 
     public static class Conditions {
+        public static final Predicate<Material> hasHotIngotProperty = mat -> mat.hasProperty(PropertyKey.HOT_IGOT);
         public static final Predicate<Material> hasIngotProperty = mat -> mat.hasProperty(PropertyKey.INGOT);
         public static final Predicate<Material> hasDustProperty = mat -> mat.hasProperty(PropertyKey.DUST);
     }

@@ -44,8 +44,8 @@ public class MaterialProperties {
         this.resourceLocation = location;
     }
 
-    public MaterialProperties addProperty(PropertyKey key){
-        KEYS.add(key);
+    public MaterialProperties addProperty(PropertyKey... key){
+        KEYS.addAll(List.of(key));
         return this;
     }
 

@@ -8,9 +8,16 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.tefyer.eclipseallot.api.APIUtils;
+import net.tefyer.eclipseallot.api.chemical.Element;
+import net.tefyer.eclipseallot.api.chemical.ElementStack;
 import net.tefyer.eclipseallot.api.property.PropertyKey;
 import net.tefyer.eclipseallot.registry.MaterialRegistry;
 
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class Material {
@@ -18,12 +25,16 @@ public class Material {
     @Getter
     private String id;
 
+    @Getter
+    private String toolTip;
 
+    public List<ElementStack> elements;
     @Getter
     private MaterialProperties properties;
 
-    protected Material(String id, MaterialProperties properties) {
+    protected Material(String id, List<ElementStack> elements,MaterialProperties properties) {
         this.properties = properties;
+        this.elements = elements;
         this.id = id;
     }
 
@@ -77,6 +88,20 @@ public class Material {
         return Component.translatable(getUnlocalizedName());
     }
 
+    public void calculateToolTip() {
+        if(isToolTopNull())
+            toolTip = "";
+        int i=0;
+        for(ElementStack entry : elements){
+            toolTip += entry.element().symbol+APIUtils.Number.toSmallDownNumbers(String.valueOf(entry.size()));
+            i++;
+        }
+    }
+
+    public boolean isToolTopNull() {
+        return toolTip == null;
+    }
+
 
     public static class Builder{
 
@@ -86,6 +111,7 @@ public class Material {
         private boolean averageRGB = false;
 
         public String name;
+        public List<ElementStack> elements;
         public MaterialProperties properties;
 
         public Builder(ResourceLocation resourceLocation) {
@@ -100,6 +126,21 @@ public class Material {
 
         public Builder iconSet(MaterialIconSet iconSet) {
             properties.setIconSet(iconSet);
+            return this;
+        }
+        public Builder setElement(ElementStack... elements){
+            this.elements = List.of(elements);
+            return this;
+        }
+        public Builder setElement(ElementStack element){
+            if(elements == null){
+                this.elements = new ArrayList<>();
+            }
+            elements.add(element);
+            return this;
+        }
+        public Builder addProperty(PropertyKey... key){
+            properties.addProperty(key);
             return this;
         }
         public Builder ingot(){
@@ -149,7 +190,7 @@ public class Material {
 
 
         public Material build(){
-            return new Material(properties.getResourceLocation().getPath(),properties);
+            return new Material(properties.getResourceLocation().getPath(),elements,properties);
         }
 
     }

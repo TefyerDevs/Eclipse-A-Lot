@@ -1,8 +1,13 @@
 {
   "itemGroup.eclipseallot.material_item": "Eclipse A Lot Material Items",
+  "material.eclipseallot.chaosium": "Chaosium",
   "material.eclipseallot.eclpisium_alloy": "Eclpisium Alloy",
   "material.eclipseallot.estatium_alloy": "Estatium Alloy",
+  "material.eclipseallot.furrisium": "Furrisium",
+  "material.eclipseallot.normalium": "Normalium",
   "tagprefix.dust": "%s Dust",
+  "tagprefix.hot_ingot": "Hot %s Ingot",
   "tagprefix.ingot": "%s Ingot",
-  "tagprefix.null": "%s Null"
+  "tagprefix.null": "%s Null",
+  "tagprefix.plate": "%s Plate"
 }

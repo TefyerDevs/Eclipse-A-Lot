@@ -1,6 +1,7 @@
 package net.tefyer.eclipseallot.api.tag;
 
 import lombok.Getter;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -14,6 +15,7 @@ import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.client.tag.TagPrefixItemRenderer;
 import org.jetbrains.annotations.Nullable;
 
+import java.awt.*;
 import java.util.List;
 
 public class TagPrefixItem extends Item {
@@ -32,6 +34,8 @@ public class TagPrefixItem extends Item {
 
     public void onRegister() {}
 
+
+
     @OnlyIn(Dist.CLIENT)
     public static ItemColor tintColor() {
         return (itemStack, index) -> {
@@ -44,10 +48,11 @@ public class TagPrefixItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents,
                                 TooltipFlag isAdvanced) {
-        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
-        if (this.tagPrefix.tooltip() != null) {
-            this.tagPrefix.tooltip().accept(material, tooltipComponents);
+        if(material.isToolTopNull()){
+            material.calculateToolTip();
         }
+        tooltipComponents.add(Component.literal(material.getToolTip()).withStyle(ChatFormatting.YELLOW));
+        super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
     }
 
     @Override

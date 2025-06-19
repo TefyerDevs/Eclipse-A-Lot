@@ -18,9 +18,6 @@ import java.util.function.Supplier;
 
 public class ItemRegistry {
 
-    public static final Map<MaterialEntry, List<Supplier<? extends Item>>> MATERIAL_ENTRY_ITEM_MAP =
-            new Object2ObjectOpenHashMap<>();
-
     public static void init(){
         MaterialItemRegistry.generateMaterialItems();
 
