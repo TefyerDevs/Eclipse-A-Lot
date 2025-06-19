@@ -1,12 +1,10 @@
 package net.tefyer.eclipseallot.registry;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.*;
 import net.tefyer.eclipseallot.Eclipseallot;
-import net.tefyer.eclipseallot.api.property.PropertyKey;
-import net.tefyer.eclipseallot.api.registrate.ERegistrate;
+import net.tefyer.eclipseallot.api.registry.ERegistrate;
 import net.tefyer.eclipseallot.api.chemical.ChemicalHelper;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import org.jetbrains.annotations.NotNull;

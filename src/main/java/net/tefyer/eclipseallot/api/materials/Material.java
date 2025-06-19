@@ -91,10 +91,12 @@ public class Material {
     public void calculateToolTip() {
         if(isToolTopNull())
             toolTip = "";
-        int i=0;
         for(ElementStack entry : elements){
-            toolTip += entry.element().symbol+APIUtils.Number.toSmallDownNumbers(String.valueOf(entry.size()));
-            i++;
+            if(entry.size() > 1){
+                toolTip += entry.element().symbol+APIUtils.Number.toSmallDownNumbers(String.valueOf(entry.size()));
+            }else{
+                toolTip += entry.element().symbol;
+            }
         }
     }
 

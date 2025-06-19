@@ -1,4 +1,4 @@
-package net.tefyer.eclipseallot.api.registrate;
+package net.tefyer.eclipseallot.api.registry;
 
 import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.builders.Builder;
@@ -8,7 +8,6 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
@@ -23,8 +22,6 @@ import net.minecraftforge.registries.RegistryObject;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.api.materials.MaterialItem;
-import net.tefyer.eclipseallot.api.materials.MaterialProperties;
-import net.tefyer.eclipseallot.registry.MaterialRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

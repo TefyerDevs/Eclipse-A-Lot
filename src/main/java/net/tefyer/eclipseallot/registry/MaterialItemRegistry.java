@@ -5,13 +5,7 @@ import com.google.common.collect.Table;
 import com.tterrag.registrate.providers.ProviderType;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
-import net.tefyer.eclipseallot.Eclipseallot;
-import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.Material;
-import net.tefyer.eclipseallot.api.materials.MaterialItem;
-import net.tefyer.eclipseallot.api.materials.MaterialProperties;
-import net.tefyer.eclipseallot.api.registrate.ERegistrate;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.api.tag.TagPrefixItem;
 

@@ -1,12 +1,14 @@
 package net.tefyer.eclipseallot.api;
 
 import com.google.common.base.CaseFormat;
+import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.tefyer.eclipseallot.Eclipseallot;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 
 public class APIUtils {
     public static Eclipseallot instance;
+
+    public static final Direction[] DIRECTIONS = Direction.values();
 
     public static class Formatting{
 
@@ -53,6 +57,29 @@ public class APIUtils {
         }
     }
     public static class Tag{
+
+
+        /**
+         * Generates tag under GTM namespace
+         *
+         * @return #gtceu:path
+         */
+        public static <T> TagKey<T> createModTag(Registry<T> registry, String path) {
+            return optionalTag(registry, Eclipseallot.id(path));
+        }
+
+        /**
+         * Generates tag under GTM namespace
+         *
+         * @return #gtceu:path
+         */
+        public static <T> TagKey<T> createModTag(ResourceKey<? extends Registry<T>> registryKey, String path) {
+            return TagKey.create(registryKey, Eclipseallot.id(path));
+        }
+
+        public static TagKey<Block> createModBlockTag(String path) {
+            return createModTag(BuiltInRegistries.BLOCK, path);
+        }
 
         public static <T> TagKey<T> optionalTag(Registry<T> registry, ResourceLocation id) {
             return TagKey.create(registry.key(), id);

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tefyer.eclipseallot.Eclipseallot;
 import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
 import net.tefyer.eclipseallot.api.materials.MaterialIconType;
-import net.tefyer.eclipseallot.api.registrate.ERegistrate;
+import net.tefyer.eclipseallot.api.registry.ERegistrate;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
@@ -34,6 +34,9 @@ public class CommonProxy {
         ItemRegistry.init();
         BlockRegistry.init();
         BlockEntityRegistry.init();
+
+        MachineRegistry.init();
+        MachineUtilsRegistry.init();
 
         REGISTRATE.registerRegistrate();
 

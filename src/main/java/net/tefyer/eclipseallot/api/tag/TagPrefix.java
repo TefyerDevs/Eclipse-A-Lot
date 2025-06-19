@@ -6,15 +6,18 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import net.minecraft.MethodsReturnNonnullByDefault;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.api.materials.MaterialIconType;
 import net.tefyer.eclipseallot.api.property.PropertyKey;
+import net.tefyer.eclipseallot.client.tag.CustomTags;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,6 +38,7 @@ public class TagPrefix {
     public static void init(){
 
     }
+
 
     // Regular Plate made of one Ingot/Dust.
     public static final TagPrefix plate = new TagPrefix("plate")
