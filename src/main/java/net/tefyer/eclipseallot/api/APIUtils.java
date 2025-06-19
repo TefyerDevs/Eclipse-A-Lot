@@ -23,7 +23,20 @@ public class APIUtils {
     public static final Direction[] DIRECTIONS = Direction.values();
 
     public static class Formatting{
+        public static String capitalizeFirstLetter(String inputString) {
+            if (inputString == null || inputString.isEmpty()) {
+                return inputString; // Handle null or empty strings
+            }
 
+            // Get the first character and convert it to uppercase
+            String firstLetter = inputString.substring(0, 1).toUpperCase();
+
+            // Get the rest of the string
+            String remainingLetters = inputString.substring(1);
+
+            // Concatenate the capitalized first letter with the rest of the string
+            return firstLetter + remainingLetters;
+        }
         /**
          * apple_orange.juice => Apple Orange (Juice)
          */

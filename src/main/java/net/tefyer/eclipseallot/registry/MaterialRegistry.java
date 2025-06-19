@@ -7,7 +7,6 @@ import net.tefyer.eclipseallot.api.chemical.Element;
 import net.tefyer.eclipseallot.api.chemical.ElementStack;
 import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
-import net.tefyer.eclipseallot.api.materials.MaterialProperties;
 
 public class MaterialRegistry {
     public static Object2ObjectMap<String, Material> MATERIAL = new Object2ObjectOpenHashMap<>();
@@ -19,7 +18,7 @@ public class MaterialRegistry {
             .dust()
             .setElement(new ElementStack(Element.NORMALIUM,1),
                     new ElementStack(Element.CHAOSIUM,3),
-                    new ElementStack(Element.FURRISIUM,5))
+                    new ElementStack(Element.FURRITE,5))
             .primaryColour(0xb734eb)
             .secondaryColoor(0x521dcf)
             .iconSet(MaterialIconSet.SHINY)

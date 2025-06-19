@@ -22,6 +22,8 @@ public class CommonProxy {
 
     public CommonProxy() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ERegistries.init(eventBus);
+
         eventBus.register(this);
 
     }
