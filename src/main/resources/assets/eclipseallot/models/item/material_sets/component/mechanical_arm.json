@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/component/mechanical_arm",
+    "layer1": "eclipseallot:item/material_sets/component/mechanical_arm_colour"
+  }
+}

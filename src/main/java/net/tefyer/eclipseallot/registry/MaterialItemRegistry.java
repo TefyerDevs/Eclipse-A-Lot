@@ -40,7 +40,7 @@ public class MaterialItemRegistry {
             if(tagPrefix.doGenerateItem()){
                 for(Map.Entry<String, Material> entry : MaterialRegistry.MATERIAL.entrySet()){
                     Material material = entry.getValue();
-                    if(tagPrefix.doGenerateItem(material)){
+                    if(tagPrefix.doGenerateItem(material) && !tagPrefix.isComponent()){
                         generateMaterialItem(tagPrefix, material);
                     }
                 }

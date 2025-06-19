@@ -26,16 +26,40 @@ public class Material {
     private String id;
 
     @Getter
-    private String toolTip;
+    private String chemicalString;
+
+    private Double mass;
+    @Getter
+    private int magicalPower = -1;
+
 
     public List<ElementStack> elements;
     @Getter
     private MaterialProperties properties;
 
-    protected Material(String id, List<ElementStack> elements,MaterialProperties properties) {
+    protected Material(String id,int magical_power, List<ElementStack> elements,MaterialProperties properties) {
         this.properties = properties;
         this.elements = elements;
         this.id = id;
+        this.magicalPower = magical_power;
+    }
+
+    public int getMagicalPower() {
+        if(magicalPower == -1)
+            calculateMagicalPower();
+        return magicalPower;
+    }
+
+    private void calculateMagicalPower() {
+        if(elements.size() == 1){
+            magicalPower = elements.get(0).element().maginalPower;
+            return;
+        }
+
+        magicalPower = 0;
+        for(ElementStack entry : elements){
+            magicalPower += entry.element().maginalPower* entry.size();
+        }
     }
 
     public String getName(){
@@ -88,20 +112,50 @@ public class Material {
         return Component.translatable(getUnlocalizedName());
     }
 
-    public void calculateToolTip() {
-        if(isToolTopNull())
-            toolTip = "";
+    public void calculateChemicalString() {
+        if(isChemicalStringNull())
+            chemicalString = "";
         for(ElementStack entry : elements){
             if(entry.size() > 1){
-                toolTip += entry.element().symbol+APIUtils.Number.toSmallDownNumbers(String.valueOf(entry.size()));
+                chemicalString += entry.element().symbol+APIUtils.Number.toSmallDownNumbers(String.valueOf(entry.size()));
             }else{
-                toolTip += entry.element().symbol;
+                chemicalString += entry.element().symbol;
             }
         }
     }
 
-    public boolean isToolTopNull() {
-        return toolTip == null;
+    public boolean isChemicalStringNull() {
+        return chemicalString == null;
+    }
+
+    public double mass() {
+        if(mass == null){
+            calculateMass();
+        }
+        return mass;
+    }
+
+    private void calculateMass() {
+        mass = (double) 0;
+        for(ElementStack element: elements){
+            double mass = element.mass();
+            this.mass += mass;
+        }
+    }
+
+    public String getPENString() {
+        int protons = 0,neutrons = 0,electrons = 0;
+        for(ElementStack element: elements){
+            protons += element.element().protons*element.size();
+            neutrons += element.element().neutrons*element.size();
+            electrons += element.element().electrons*element.size();
+        }
+
+        String penString = "";
+        penString += "protons: "+protons+" ";
+        penString += "electrons: "+electrons+" ";
+        penString += "neutrons: "+neutrons;
+        return penString;
     }
 
 
@@ -112,6 +166,7 @@ public class Material {
          */
         private boolean averageRGB = false;
 
+        public int magical_power = -1;
         public String name;
         public List<ElementStack> elements;
         public MaterialProperties properties;
@@ -128,6 +183,10 @@ public class Material {
 
         public Builder iconSet(MaterialIconSet iconSet) {
             properties.setIconSet(iconSet);
+            return this;
+        }
+        public Builder setMagicalPower(int magical_power) {
+            this.magical_power = magical_power;
             return this;
         }
         public Builder setElement(ElementStack... elements){
@@ -192,7 +251,7 @@ public class Material {
 
 
         public Material build(){
-            return new Material(properties.getResourceLocation().getPath(),elements,properties);
+            return new Material(properties.getResourceLocation().getPath(),magical_power,elements,properties);
         }
 
     }

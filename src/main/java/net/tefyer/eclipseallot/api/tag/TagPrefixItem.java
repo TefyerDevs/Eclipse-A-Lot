@@ -11,6 +11,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.tefyer.eclipseallot.Eclipseallot;
+import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.client.tag.TagPrefixItemRenderer;
 import org.jetbrains.annotations.Nullable;
@@ -48,10 +49,24 @@ public class TagPrefixItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents,
                                 TooltipFlag isAdvanced) {
-        if(material.isToolTopNull()){
-            material.calculateToolTip();
+        if(material.isChemicalStringNull()){
+            material.calculateChemicalString();
         }
-        tooltipComponents.add(Component.literal(material.getToolTip()).withStyle(ChatFormatting.YELLOW));
+        tooltipComponents.add(Component.literal(material.getChemicalString()).withStyle(ChatFormatting.YELLOW));
+        tooltipComponents.add(Component.literal(material.getPENString())
+                .withStyle(ChatFormatting.YELLOW));
+        tooltipComponents.add(Component.literal("mass: "+ APIUtils.Formatting.roundDecimalPlaces(material.mass(),2))
+                .withStyle(ChatFormatting.YELLOW));
+        if(material.elements.size() == 1){
+            tooltipComponents.add(Component.literal("Atomic Number: "+  material.elements.get(0).element().getProtons())
+                    .withStyle(ChatFormatting.YELLOW));
+            tooltipComponents.add(Component.literal("Material Class: " +
+                    material.elements.get(0).element().getElementsClasses().toString()).withStyle(ChatFormatting.YELLOW));
+        }
+        if(material.getMagicalPower() != 0){
+            tooltipComponents.add(Component.literal("Magical Power: " +
+                    material.getMagicalPower()).withStyle(ChatFormatting.YELLOW));
+        }
         super.appendHoverText(stack, level, tooltipComponents, isAdvanced);
     }
 

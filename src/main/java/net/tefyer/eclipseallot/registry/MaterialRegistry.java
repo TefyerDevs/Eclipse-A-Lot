@@ -16,6 +16,7 @@ public class MaterialRegistry {
     public static final Material ECLIPSIUM_ALLOY = new Material.Builder(Eclipseallot.id("eclpisium_alloy"))
             .ingot()
             .dust()
+            .setMagicalPower(50)
             .setElement(new ElementStack(Element.NORMALIUM,1),
                     new ElementStack(Element.CHAOSIUM,3),
                     new ElementStack(Element.FURRITE,5))
@@ -29,6 +30,7 @@ public class MaterialRegistry {
             .setElement(new ElementStack(Element.CHAOSIUM,5), new ElementStack(Element.NORMALIUM,2))
             .primaryColour(0xf07c22)
             .secondaryColoor(0x7d3d0b)
+            .setMagicalPower(50)
             .iconSet(MaterialIconSet.SHINY)
             .build();
 

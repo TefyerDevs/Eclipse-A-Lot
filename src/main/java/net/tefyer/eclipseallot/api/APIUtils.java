@@ -10,15 +10,20 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.tefyer.eclipseallot.Eclipseallot;
+import net.tefyer.eclipseallot.api.magic.MPDatabase;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
 public class APIUtils {
     public static Eclipseallot instance;
+
+    public static MPDatabase magic_database = new MPDatabase();
 
     public static final Direction[] DIRECTIONS = Direction.values();
 
@@ -36,6 +41,12 @@ public class APIUtils {
 
             // Concatenate the capitalized first letter with the rest of the string
             return firstLetter + remainingLetters;
+        }
+
+        public static double roundDecimalPlaces(double value, int roundVal) {
+            BigDecimal bd = new BigDecimal(Double.toString(value));
+            bd = bd.setScale(roundVal, RoundingMode.HALF_UP); // HALF_UP for standard rounding
+            return bd.doubleValue();
         }
         /**
          * apple_orange.juice => Apple Orange (Juice)
@@ -144,6 +155,8 @@ public class APIUtils {
          */
         public static final long M = 3628800;
 
+        public static final double MASS_OF_ELECTRON = (double) 1/186;
+
         private static final int SMALL_DOWN_NUMBER_BASE = '\u2080';
         private static final int SMALL_UP_NUMBER_BASE = '\u2070';
         private static final int SMALL_UP_NUMBER_ONE = '\u00B9';
@@ -180,6 +193,10 @@ public class APIUtils {
                 }
             }
             return new String(charArray);
+        }
+
+        public static double electronsWeight(long electrons) {
+            return electrons*MASS_OF_ELECTRON;
         }
     }
 }

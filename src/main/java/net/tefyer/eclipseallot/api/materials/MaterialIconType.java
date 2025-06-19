@@ -80,6 +80,10 @@ public record MaterialIconType(String name) {
     public static final MaterialIconType gear = new MaterialIconType("gear");
     public static final MaterialIconType foil = new MaterialIconType("foil");
 
+    public static final MaterialIconType pump = new MaterialIconType("pump");
+    public static final MaterialIconType piston = new MaterialIconType("piston");
+    public static final MaterialIconType mechanical_arm = new MaterialIconType("mechanical_arm");
+
     public MaterialIconType(String name) {
         this.name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
         Preconditions.checkArgument(!ICON_TYPES.containsKey(this.name), "MaterialIconTyp "+name+" already registerd");

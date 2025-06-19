@@ -7,7 +7,7 @@ import net.tefyer.eclipseallot.api.materials.MaterialIconType;
 
 public enum ElementsClasses {
     NATURALS(MaterialIconSet.ROUGH),
-    ELETRICTS(MaterialIconSet.METALLIC),
+    ELECTRICS(MaterialIconSet.METALLIC),
     NORMALS(MaterialIconSet.WOOD),
     UNSTABLES(MaterialIconSet.BRIGHT),
     UNREACTIVES(MaterialIconSet.DULL);

@@ -1,4 +1,10 @@
 {
+  "component.eclipseallot.advanced": "Advanced Tier",
+  "component.eclipseallot.basic": "Basic Tier",
+  "component.eclipseallot.fission": "Fission Tier",
+  "component.eclipseallot.hyper": "Hyper Tier",
+  "component.eclipseallot.low": "Low Tier",
+  "component.eclipseallot.nuclear": "Nuclear Tier",
   "itemGroup.eclipseallot.material_item": "Eclipse A Lot Material Items",
   "material.eclipseallot.asylite": "Asylite",
   "material.eclipseallot.chaosium": "Chaosium",
@@ -18,6 +24,10 @@
   "tagprefix.dust": "%s Dust",
   "tagprefix.hot_ingot": "Hot %s Ingot",
   "tagprefix.ingot": "%s Ingot",
+  "tagprefix.mechanical_arm": "%s Mechanical Arm",
   "tagprefix.null": "%s Null",
-  "tagprefix.plate": "%s Plate"
+  "tagprefix.piston": "%s Piston",
+  "tagprefix.plate": "%s Plate",
+  "tagprefix.pump": "%s Pump",
+  "tagprefix.raw": "Raw %s"
 }

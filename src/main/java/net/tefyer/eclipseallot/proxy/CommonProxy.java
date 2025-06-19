@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.tefyer.eclipseallot.Eclipseallot;
+import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
 import net.tefyer.eclipseallot.api.materials.MaterialIconType;
 import net.tefyer.eclipseallot.api.registry.ERegistrate;
@@ -15,6 +16,7 @@ import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 import net.tefyer.eclipseallot.client.pack.EPackSource;
+import net.tefyer.eclipseallot.networking.ModMessages;
 import net.tefyer.eclipseallot.registry.*;
 
 public class CommonProxy {
@@ -28,6 +30,7 @@ public class CommonProxy {
 
     }
     public static void init(){
+        APIUtils.magic_database.init();
         TagPrefix.init();
         MaterialIconSet.init();
         MaterialIconType.init();
@@ -43,6 +46,7 @@ public class CommonProxy {
         REGISTRATE.registerRegistrate();
 
         EDataGen.init();
+        ModMessages.register();
     }
 
     @SubscribeEvent

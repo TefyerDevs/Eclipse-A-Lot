@@ -7,7 +7,8 @@ public enum PropertyKey {
     NUGGET,
     GEM,
     DUST,
+    ORE,
     PLATE,
-    HOT_IGOT,
+    HOT_INGOT,
     POLYMER;
 }

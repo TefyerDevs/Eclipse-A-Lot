@@ -1,4 +1,10 @@
 {
+  "component.eclipseallot.advanced": "ɹǝı⟘ pǝɔuɐʌpⱯ",
+  "component.eclipseallot.basic": "ɹǝı⟘ ɔısɐᗺ",
+  "component.eclipseallot.fission": "ɹǝı⟘ uoıssıℲ",
+  "component.eclipseallot.hyper": "ɹǝı⟘ ɹǝdʎH",
+  "component.eclipseallot.low": "ɹǝı⟘ ʍoꞀ",
+  "component.eclipseallot.nuclear": "ɹǝı⟘ ɹɐǝןɔnN",
   "itemGroup.eclipseallot.material_item": "sɯǝʇI ןɐıɹǝʇɐW ʇoꞀ Ɐ ǝsdıןɔƎ",
   "material.eclipseallot.asylite": "ǝʇıןʎsⱯ",
   "material.eclipseallot.chaosium": "ɯnısoɐɥƆ",
@@ -18,6 +24,10 @@
   "tagprefix.dust": "ʇsnᗡ %s",
   "tagprefix.hot_ingot": "ʇobuI %s ʇoH",
   "tagprefix.ingot": "ʇobuI %s",
+  "tagprefix.mechanical_arm": "ɯɹⱯ ןɐɔıuɐɥɔǝW %s",
   "tagprefix.null": "ןןnN %s",
-  "tagprefix.plate": "ǝʇɐןԀ %s"
+  "tagprefix.piston": "uoʇsıԀ %s",
+  "tagprefix.plate": "ǝʇɐןԀ %s",
+  "tagprefix.pump": "dɯnԀ %s",
+  "tagprefix.raw": "%s ʍɐᴚ"
 }
