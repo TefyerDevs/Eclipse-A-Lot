@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/dull/rotor",
+  "textures": {
+    "layer1": "eclipseallot:item/material_sets/radioactive/rotor_secondary"
+  }
+}

@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
 import net.tefyer.eclipseallot.api.materials.MaterialIconType;
+import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 
 import java.util.HashSet;
 import java.util.Set;

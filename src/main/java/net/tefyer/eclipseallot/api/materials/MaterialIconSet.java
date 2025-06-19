@@ -72,4 +72,8 @@ public class MaterialIconSet {
     public String toString() {
         return name;
     }
+
+    public static void init() {
+
+    }
 }

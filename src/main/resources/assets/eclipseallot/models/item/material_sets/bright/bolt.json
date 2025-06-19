@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/shiny/bolt",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/bright/bolt_overlay"
+  }
+}

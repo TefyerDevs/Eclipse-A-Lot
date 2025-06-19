@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/dull/gear",
+  "textures": {
+    "layer1": "eclipseallot:item/material_sets/radioactive/gear_secondary"
+  }
+}

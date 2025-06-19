@@ -92,13 +92,19 @@ public class Material {
             return this;
         }
 
+        public Builder iconSet(MaterialIconSet iconSet) {
+            properties.setIconSet(iconSet);
+            return this;
+        }
         public Builder ingot(){
             properties.addProperty(PropertyKey.INGOT);
+            iconSet(MaterialIconSet.METALLIC);
             return this;
         }
 
         public Builder rawIngot(){
             properties.addProperty(PropertyKey.RAW_INGOT);
+            iconSet(MaterialIconSet.DULL);
             return this;
         }
 
@@ -137,7 +143,7 @@ public class Material {
 
 
         public Material build(){
-            return MaterialRegistry.MATERIAL.put(id,new Material(id,properties));
+            return new Material(id,properties);
         }
     }
 }

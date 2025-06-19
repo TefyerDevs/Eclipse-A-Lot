@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/bright/ingot",
+  "textures": {
+    "layer3": "eclipseallot:item/material_sets/dull/ingot_double_overlay"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/shiny/rod",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/bright/rod_overlay"
+  }
+}

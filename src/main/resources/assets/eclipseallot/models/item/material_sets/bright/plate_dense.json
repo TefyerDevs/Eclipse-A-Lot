@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/shiny/plate_dense",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/bright/plate_dense_overlay"
+  }
+}

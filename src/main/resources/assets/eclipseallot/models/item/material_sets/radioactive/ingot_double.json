@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/metallic/ingot_double",
+  "textures": {
+    "layer1": "eclipseallot:item/material_sets/radioactive/ingot_double_secondary"
+  }
+}

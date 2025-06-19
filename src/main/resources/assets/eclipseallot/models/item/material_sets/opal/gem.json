@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/ruby/gem",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/ruby/gem_overlay"
+  }
+}

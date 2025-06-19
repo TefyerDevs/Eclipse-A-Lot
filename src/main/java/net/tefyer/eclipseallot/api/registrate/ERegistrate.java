@@ -13,6 +13,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.Material;
@@ -26,15 +28,20 @@ import java.util.ArrayList;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Supplier;
 
 public class ERegistrate extends Registrate {
     public List<Material> materials = new ArrayList<>();
+
+    private final AtomicBoolean registered = new AtomicBoolean(false);
+
     public Object2ObjectOpenHashMap<String, ItemEntry<MaterialItem>> materialItems = new Object2ObjectOpenHashMap<>();
 
     public ERegistrate(String modid) {
         super(modid);
     }
+
 
 
     @Override
@@ -78,4 +85,21 @@ public class ERegistrate extends Registrate {
     public void addItem(String id,ItemEntry<MaterialItem> materialItemItemEntry) {
         materialItems.put(id, materialItemItemEntry);
     }
+
+    public List<Material> getAllMaterials() {
+        return materials;
+    }
+
+    public void registerRegistrate() {
+        registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
+    }
+
+    @Override
+    public Registrate registerEventListeners(IEventBus bus) {
+        if (!registered.getAndSet(true)) {
+            return super.registerEventListeners(bus);
+        }
+        return this;
+    }
+
 }

@@ -1,0 +1,7 @@
+{
+  "parent": "eclipseallot:item/material_sets/rough/dust_pure",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/quartz/dust",
+    "layer1": "eclipseallot:item/material_sets/quartz/dust_secondary"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/metallic/plate_double",
+  "textures": {
+    "layer3": "eclipseallot:item/material_sets/magnetic/magnetic_overlay"
+  }
+}

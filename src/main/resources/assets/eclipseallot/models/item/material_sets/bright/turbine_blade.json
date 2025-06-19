@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/shiny/turbine_blade",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/bright/turbine_blade_overlay"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/shiny/spring",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/bright/spring_overlay"
+  }
+}

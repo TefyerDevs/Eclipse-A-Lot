@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/shiny/nugget",
+    "layer1": "eclipseallot:item/material_sets/shiny/nugget_secondary",
+    "layer2": "eclipseallot:item/material_sets/shiny/nugget_overlay"
+  }
+}

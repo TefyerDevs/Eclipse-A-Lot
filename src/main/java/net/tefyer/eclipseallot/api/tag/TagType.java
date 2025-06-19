@@ -14,7 +14,6 @@ import java.util.function.Predicate;
 public class TagType {
 
     private final String tagPath;
-    @Getter
     private boolean isParentTag = false;
     private BiFunction<TagPrefix, Material, TagKey<Item>> formatter;
     private Predicate<Material> filter;
@@ -75,6 +74,10 @@ public class TagType {
         type.filter = filter;
         type.formatter = (prefix, material) -> APIUtils.Tag.createItemTag(type.tagPath, isVanilla);
         return type;
+    }
+
+    public boolean isParentTag() {
+        return isParentTag;
     }
 
     public TagKey<Item> getTag(TagPrefix prefix, @NotNull Material material) {

@@ -1,0 +1,7 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/wood/rod",
+    "layer1": "eclipseallot:item/material_sets/wood/rod_secondary"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/dull/ring",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/shiny/ring_overlay"
+  }
+}

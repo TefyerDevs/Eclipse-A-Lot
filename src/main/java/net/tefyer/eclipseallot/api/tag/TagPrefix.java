@@ -3,6 +3,8 @@ package net.tefyer.eclipseallot.api.tag;
 import com.google.common.collect.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -13,19 +15,40 @@ import net.tefyer.eclipseallot.api.property.PropertyKey;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
+import static net.tefyer.eclipseallot.api.tag.TagPrefix.Conditions.hasDustProperty;
+import static net.tefyer.eclipseallot.api.tag.TagPrefix.Conditions.hasIngotProperty;
+
+@SuppressWarnings("unused")
+@Accessors(chain = true, fluent = true)
 public class TagPrefix {
+
+    public static Map<String, TagPrefix> PREFIXES = new HashMap<>();
+
+    public static void init(){
+
+    }
+
+    public static final TagPrefix dust = new TagPrefix("dust")
+            .defaultTagPath("dust/%s")
+            .unformattedTagPath("dust")
+            .generateItem(true)
+            .materialIconType(MaterialIconType.dust)
+            .generationCondition(hasDustProperty);
 
     public static final TagPrefix ingot = new TagPrefix("ingot")
             .defaultTagPath("ingots/%s")
             .unformattedTagPath("ingots")
             .generateItem(true)
-            .materialIconType(MaterialIconType.ingot);
+            .materialIconType(MaterialIconType.ingot)
+            .generationCondition(hasIngotProperty);
 
     public static final TagPrefix NULL_PREFIX = new TagPrefix("null");
+
 
     @Setter
     private Supplier<Table<TagPrefix, Material, ? extends Supplier<? extends ItemLike>>> itemTable;
@@ -34,7 +57,6 @@ public class TagPrefix {
     @Setter
     private @Nullable Predicate<Material> generationCondition;
 
-    public final static Map<String, TagPrefix> PREFIXES = new HashMap<>();
     private final Map<Material, Supplier<? extends ItemLike>[]> ignoredMaterials = new HashMap<>();
     protected final List<TagType> tags = new ArrayList<>();
     @Getter
@@ -68,6 +90,8 @@ public class TagPrefix {
         this.idPattern = "%s_" + APIUtils.Formatting.toLowerCaseUnder(name);
         this.invertedName = invertedName;
         this.langValue = "%s " + APIUtils.Formatting.toEnglishName(APIUtils.Formatting.toLowerCaseUnder(name));
+        if(PREFIXES == null)
+            PREFIXES = new HashMap<>();
         PREFIXES.put(name, this);
     }
     public static Collection<TagPrefix> values() {
@@ -132,9 +156,14 @@ public class TagPrefix {
                 .toArray(TagKey[]::new);
     }
 
+    public int maxStackSize() {
+        return 64;
+    }
+
 
     public static class Conditions {
         public static final Predicate<Material> hasIngotProperty = mat -> mat.hasProperty(PropertyKey.INGOT);
+        public static final Predicate<Material> hasDustProperty = mat -> mat.hasProperty(PropertyKey.DUST);
     }
     public TagPrefix defaultTagPath(String path) {
         return this.defaultTagPath(path, false);
@@ -145,4 +174,7 @@ public class TagPrefix {
         return this;
     }
 
+    public boolean isEmpty() {
+        return this == NULL_PREFIX;
+    }
 }

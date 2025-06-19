@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.tefyer.eclipseallot.Eclipseallot;
 import net.tefyer.eclipseallot.api.materials.Material;
+import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
 import net.tefyer.eclipseallot.api.materials.MaterialProperties;
 
 public class MaterialRegistry {
@@ -14,12 +15,23 @@ public class MaterialRegistry {
     public static final Material ECLIPSIUM_ALLOY = new Material.Builder(Eclipseallot.id("eclpisium_alloy"))
             .setId("eclpisium_alloy")
             .ingot()
+            .dust()
             .primaryColour(0xb734eb)
             .secondaryColoor(0x521dcf)
+            .iconSet(MaterialIconSet.SHINY)
+            .build();
+
+    public static final Material ESTATIUM_ALLOY = new Material.Builder(Eclipseallot.id("estatium_alloy"))
+            .setId("estatium_alloy")
+            .ingot()
+            .primaryColour(0xf07c22)
+            .secondaryColoor(0x7d3d0b)
+            .iconSet(MaterialIconSet.SHINY)
             .build();
 
     public static void init(){
-
+        MATERIAL.put(ECLIPSIUM_ALLOY.getId(), ECLIPSIUM_ALLOY);
+        MATERIAL.put(ESTATIUM_ALLOY.getId(), ESTATIUM_ALLOY);
     }
 
 }

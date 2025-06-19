@@ -31,6 +31,7 @@ public record MaterialIconType(String name) {
     public static final Map<String, MaterialIconType> ICON_TYPES = new HashMap<>();
 
     public static final MaterialIconType ingot = new MaterialIconType("ingot");
+    public static final MaterialIconType dust = new MaterialIconType("dust");
 
     public MaterialIconType(String name) {
         this.name = CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name);
@@ -38,6 +39,9 @@ public record MaterialIconType(String name) {
         ICON_TYPES.put(this.name, this);
     }
 
+    public static void init() {
+
+    }
     @NotNull
     public ResourceLocation getItemModelPath(@NotNull MaterialIconSet materialIconSet, boolean doReadCache) {
         if (doReadCache) {

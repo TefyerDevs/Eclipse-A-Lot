@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/metallic/rod",
+  "textures": {
+    "layer1": "eclipseallot:item/material_sets/radioactive/rod_secondary"
+  }
+}

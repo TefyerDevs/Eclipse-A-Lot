@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/metallic/round",
+  "textures": {
+    "layer1": "eclipseallot:item/material_sets/radioactive/round_secondary"
+  }
+}

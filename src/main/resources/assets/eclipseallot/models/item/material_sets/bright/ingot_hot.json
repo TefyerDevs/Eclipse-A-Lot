@@ -1,0 +1,9 @@
+{
+  "parent": "eclipseallot:item/material_sets/bright/ingot",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/bright/ingot",
+    "layer1": "eclipseallot:item/material_sets/bright/ingot_secondary",
+    "layer2": "eclipseallot:item/material_sets/bright/ingot_overlay",
+    "layer3": "eclipseallot:item/material_sets/bright/ingot_hot_overlay"
+  }
+}

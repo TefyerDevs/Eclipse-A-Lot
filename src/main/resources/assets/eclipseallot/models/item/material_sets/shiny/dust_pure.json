@@ -1,0 +1,9 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "eclipseallot:item/material_sets/shiny/dust",
+    "layer1": "eclipseallot:item/material_sets/shiny/dust_secondary",
+    "layer2": "eclipseallot:item/material_sets/shiny/dust_overlay",
+    "layer3": "eclipseallot:item/material_sets/dull/dust_pure_overlay"
+  }
+}

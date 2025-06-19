@@ -1,0 +1,6 @@
+{
+  "parent": "eclipseallot:item/material_sets/metallic/dust",
+  "textures": {
+    "layer2": "eclipseallot:item/material_sets/magnetic/magnetic_overlay"
+  }
+}

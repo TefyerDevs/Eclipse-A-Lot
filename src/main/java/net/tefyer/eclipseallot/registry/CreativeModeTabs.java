@@ -11,7 +11,7 @@ import net.tefyer.eclipseallot.api.chemical.ChemicalHelper;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import org.jetbrains.annotations.NotNull;
 
-import static net.tefyer.eclipseallot.registry.ItemRegistry.REGISTRATE;
+import static net.tefyer.eclipseallot.proxy.CommonProxy.REGISTRATE;
 
 public class CreativeModeTabs {
     public static RegistryEntry<CreativeModeTab> MATERIAL_ITEM = REGISTRATE.defaultCreativeTab("material_item",
@@ -22,7 +22,8 @@ public class CreativeModeTabs {
                             .build())
             .register();
 
-    public static void init() {}
+    public static void init() {
+    }
 
 
     public static class RegistrateDisplayItemsGenerator implements CreativeModeTab.DisplayItemsGenerator {

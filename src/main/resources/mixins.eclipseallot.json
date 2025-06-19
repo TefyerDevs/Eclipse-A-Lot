@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "refmap": "eclipseallot.refmap.json",
+  "package": "net.tefyer.eclipseallot.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "plugin": "net.tefyer.eclipseallot.mixin.MixinPlugin",
+  "client": [
+    "ModelManagerMixin"
+  ]
+}
