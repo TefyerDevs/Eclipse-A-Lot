@@ -49,7 +49,7 @@ public class MaterialProperties {
         return this;
     }
 
-    public boolean hasProperty(PropertyKey propertyKey) {
-        return KEYS.contains(propertyKey);
+    public boolean hasProperty(PropertyKey... propertyKey) {
+        return KEYS.containsAll(List.of(propertyKey));
     }
 }

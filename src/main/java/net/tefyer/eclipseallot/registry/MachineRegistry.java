@@ -9,6 +9,7 @@ import net.tefyer.eclipseallot.api.machines.MachineBuilder;
 
 public class MachineRegistry {
 
+
     public static final Machine ALLOY_FURNACE = new MachineBuilder()
             .id(Eclipseallot.id("alloy_furnace"))
             .setRotatable(BlockStateProperties.HORIZONTAL_AXIS)
@@ -16,5 +17,6 @@ public class MachineRegistry {
             .build();
 
     public static void init() {
+
     }
 }

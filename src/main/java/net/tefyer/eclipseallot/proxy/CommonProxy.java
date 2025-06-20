@@ -1,5 +1,8 @@
 package net.tefyer.eclipseallot.proxy;
 
+import dev.toma.configuration.Configuration;
+import dev.toma.configuration.config.Config;
+import dev.toma.configuration.config.format.ConfigFormats;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraftforge.event.AddPackFindersEvent;
@@ -7,6 +10,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLConstructModEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.tefyer.eclipseallot.ConfigHolder;
 import net.tefyer.eclipseallot.Eclipseallot;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.api.materials.MaterialIconSet;
@@ -16,7 +20,9 @@ import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 import net.tefyer.eclipseallot.client.pack.EPackSource;
+import net.tefyer.eclipseallot.datagen.recipes.ERecipies;
 import net.tefyer.eclipseallot.networking.ModMessages;
+import net.tefyer.eclipseallot.pack.DynamicDataPack;
 import net.tefyer.eclipseallot.registry.*;
 
 public class CommonProxy {
@@ -31,6 +37,7 @@ public class CommonProxy {
     }
     public static void init(){
         APIUtils.magic_database.init();
+        ConfigHolder.init();
         TagPrefix.init();
         MaterialIconSet.init();
         MaterialIconType.init();
@@ -53,6 +60,7 @@ public class CommonProxy {
     public void modConstruct(FMLConstructModEvent event){
         event.enqueueWork(CommonProxy::init);
     }
+
     @SubscribeEvent
     public void registerPackFinders(AddPackFindersEvent event){
         if(event.getPackType() == PackType.CLIENT_RESOURCES){
@@ -63,7 +71,16 @@ public class CommonProxy {
                     Pack.Position.BOTTOM,
                     DynamicResourcePack::new));
         } else if(event.getPackType() == PackType.SERVER_DATA){
+            DynamicDataPack.clearServer();
 
+            long startTime = System.currentTimeMillis();
+            ERecipies.recipeRemoval();
+            ERecipies.recipeAddition(DynamicDataPack::addRecipe);
+            Eclipseallot.LOGGER.info("GregTech Data loading took {}ms", System.currentTimeMillis() - startTime);
+
+
+            event.addRepositorySource(new EPackSource(Eclipseallot.MODID+":dynamic_data",
+                    event.getPackType(), Pack.Position.BOTTOM,DynamicDataPack::new));
         }
     }
 }

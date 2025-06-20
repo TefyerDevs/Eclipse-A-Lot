@@ -100,6 +100,10 @@ public class Material {
     public boolean hasProperty(PropertyKey propertyKey) {
         return properties.hasProperty(propertyKey);
     }
+    public boolean hasProperty(PropertyKey... keys) {
+        return properties.hasProperty(keys);
+    }
+
 
     public MaterialIconSet getMateralIconSet() {
         return properties.getIconSet();

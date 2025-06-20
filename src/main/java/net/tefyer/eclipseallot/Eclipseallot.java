@@ -10,10 +10,13 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.loading.FMLPaths;
 import net.tefyer.eclipseallot.api.APIUtils;
 import net.tefyer.eclipseallot.proxy.ClientProxy;
 import net.tefyer.eclipseallot.proxy.CommonProxy;
 import org.slf4j.Logger;
+
+import java.nio.file.Path;
 
 @Mod(Eclipseallot.MODID)
 public class Eclipseallot {
@@ -45,6 +48,15 @@ public class Eclipseallot {
     public static boolean isClientSide() {
         return FMLEnvironment.dist.isClient();
     }
+
+
+    /**
+     * @return the path to the minecraft instance directory
+     */
+    public static Path getGameDir() {
+        return FMLPaths.GAMEDIR.get();
+    }
+
 
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

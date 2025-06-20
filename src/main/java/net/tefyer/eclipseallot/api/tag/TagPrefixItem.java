@@ -55,14 +55,14 @@ public class TagPrefixItem extends Item {
         tooltipComponents.add(Component.literal(material.getChemicalString()).withStyle(ChatFormatting.YELLOW));
         tooltipComponents.add(Component.literal(material.getPENString())
                 .withStyle(ChatFormatting.YELLOW));
-        tooltipComponents.add(Component.literal("mass: "+ APIUtils.Formatting.roundDecimalPlaces(material.mass(),2))
+        tooltipComponents.add(Component.literal("Atomic Mass: "+ APIUtils.Formatting.roundDecimalPlaces(material.mass(),2))
                 .withStyle(ChatFormatting.YELLOW));
+
         if(material.elements.size() == 1){
-            tooltipComponents.add(Component.literal("Atomic Number: "+  material.elements.get(0).element().getProtons())
-                    .withStyle(ChatFormatting.YELLOW));
             tooltipComponents.add(Component.literal("Material Class: " +
                     material.elements.get(0).element().getElementsClasses().toString()).withStyle(ChatFormatting.YELLOW));
         }
+
         if(material.getMagicalPower() != 0){
             tooltipComponents.add(Component.literal("Magical Power: " +
                     material.getMagicalPower()).withStyle(ChatFormatting.YELLOW));

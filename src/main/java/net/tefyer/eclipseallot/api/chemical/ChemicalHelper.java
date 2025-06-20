@@ -13,6 +13,7 @@ import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.registry.ItemRegistry;
 import net.tefyer.eclipseallot.registry.MaterialItemRegistry;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,5 +40,15 @@ public class ChemicalHelper {
 
     public static TagKey<Item>[] getTags(TagPrefix orePrefix, @NotNull Material material) {
         return orePrefix.getItemTags(material);
+    }
+
+
+    @Nullable
+    public static TagKey<Item> getTag(TagPrefix orePrefix, @NotNull Material material) {
+        var tags = orePrefix.getItemTags(material);
+        if (tags.length > 0) {
+            return tags[0];
+        }
+        return null;
     }
 }

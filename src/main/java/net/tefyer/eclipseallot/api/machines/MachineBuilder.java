@@ -1,15 +1,21 @@
 package net.tefyer.eclipseallot.api.machines;
 
+import lombok.Getter;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 import java.awt.*;
+import java.util.function.Supplier;
 
 public class MachineBuilder {
 
-    public MachineBuilder id(ResourceLocation alloyFurnace) {
+    public ResourceLocation id;
+    public Supplier<MenuType<?>> menu;
+    public EnumProperty<Direction.Axis> rotational;
+
+    public MachineBuilder id(ResourceLocation id) {
 
         return this;
     }
@@ -18,12 +24,12 @@ public class MachineBuilder {
         return this;
     }
 
-    public MachineBuilder setMenu(MenuType<?> menu) {
+    public MachineBuilder setMenu(Supplier<MenuType<?>> menu) {
         return this;
     }
 
     public Machine build(){
-        return new Machine();
+        return new Machine(id,menu,rotational);
     }
 
 }
