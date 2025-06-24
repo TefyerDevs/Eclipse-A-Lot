@@ -21,7 +21,9 @@
   "material.eclipseallot.modgin": "Modgin",
   "material.eclipseallot.normalium": "Normalium",
   "material.eclipseallot.polk": "Polk",
+  "tagprefix.bolt": "%s Bolt",
   "tagprefix.dust": "%s Dust",
+  "tagprefix.gear": "%s Gear",
   "tagprefix.hot_ingot": "Hot %s Ingot",
   "tagprefix.ingot": "%s Ingot",
   "tagprefix.mechanical_arm": "%s Mechanical Arm",
@@ -29,5 +31,6 @@
   "tagprefix.piston": "%s Piston",
   "tagprefix.plate": "%s Plate",
   "tagprefix.pump": "%s Pump",
-  "tagprefix.raw": "Raw %s"
+  "tagprefix.raw": "Raw %s",
+  "tagprefix.ring": "%s Ring"
 }

@@ -6,6 +6,7 @@
   "compatibilityLevel": "JAVA_17",
   "plugin": "net.tefyer.eclipseallot.mixin.MixinPlugin",
   "client": [
-    "ModelManagerMixin"
+    "ModelManagerMixin",
+    "ShapedRecipeAccessor"
   ]
 }

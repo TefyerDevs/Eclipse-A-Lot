@@ -5,7 +5,7 @@ import dev.toma.configuration.config.Config;
 import dev.toma.configuration.config.Configurable;
 import dev.toma.configuration.config.format.ConfigFormats;
 
-@Config(id =  Eclipseallot.MODID)
+@Config(id =  Eclipseallot.MODID, group = "/"+Eclipseallot.MODID)
 public class ConfigHolder {
 
     public static ConfigHolder INSTANCE;
@@ -17,7 +17,7 @@ public class ConfigHolder {
     public static void init() {
         synchronized (LOCK) {
             if (INSTANCE == null) {
-                INSTANCE = Configuration.registerConfig(ConfigHolder.class, ConfigFormats.PROPERTIES).getConfigInstance();
+                INSTANCE = Configuration.registerConfig(ConfigHolder.class, ConfigFormats.YAML).getConfigInstance();
             }
         }
     }

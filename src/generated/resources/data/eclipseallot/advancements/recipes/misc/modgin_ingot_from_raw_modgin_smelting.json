@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_modgin": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eclipseallot:raw_modgin"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eclipseallot:modgin_ingot_from_raw_modgin_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_modgin",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eclipseallot:modgin_ingot_from_raw_modgin_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

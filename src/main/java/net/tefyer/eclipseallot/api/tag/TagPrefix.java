@@ -11,6 +11,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.tefyer.eclipseallot.Eclipseallot;
@@ -20,6 +21,7 @@ import net.tefyer.eclipseallot.api.materials.MaterialIconType;
 import net.tefyer.eclipseallot.api.property.PropertyKey;
 import net.tefyer.eclipseallot.api.tiers.TechTiers;
 import net.tefyer.eclipseallot.client.tag.CustomTags;
+import net.tefyer.eclipseallot.registry.MaterialRegistry;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,6 +42,41 @@ public class TagPrefix {
     public static void init(){
 
     }
+
+
+    // consisting out of 1/8 Ingot or 1/4 Stick.
+    public static final TagPrefix bolt = new TagPrefix("bolt")
+            .defaultTagPath("bolts/%s")
+            .unformattedTagPath("bolts")
+            .materialAmount(APIUtils.Number.M / 8)
+            .materialIconType(MaterialIconType.bolt)
+            .unificationEnabled(true)
+            .enableRecycling()
+            .generateItem(true)
+            .generationCondition(mat -> mat.hasProperty(PropertyKey.BOLT));
+
+    // consisting out of 1/2 Stick.
+    public static final TagPrefix ring = new TagPrefix("ring")
+            .defaultTagPath("rings/%s")
+            .unformattedTagPath("rings")
+            .materialAmount(APIUtils.Number.M / 4)
+            .materialIconType(MaterialIconType.ring)
+            .unificationEnabled(true)
+            .enableRecycling()
+            .generateItem(true)
+            .generationCondition(mat -> mat.hasProperty(PropertyKey.RING));
+
+    // Consisting of 4 Plates.
+    public static final TagPrefix gear = new TagPrefix("gear")
+            .defaultTagPath("gears/%s")
+            .unformattedTagPath("gears")
+            .materialAmount(APIUtils.Number.M * 4)
+            .maxStackSize(16)
+            .materialIconType(MaterialIconType.gear)
+            .unificationEnabled(true)
+            .enableRecycling()
+            .generateItem(true)
+            .generationCondition(mat -> mat.hasProperty(PropertyKey.GEAR));
 
     // ========================================== //
     //             COMPONENT ITEMS                //
@@ -171,6 +208,10 @@ public class TagPrefix {
 
     @Setter
     @Getter
+    public int maxStackSize;
+
+    @Setter
+    @Getter
     public String langValue;
 
     public TagPrefix(String name) {
@@ -248,10 +289,6 @@ public class TagPrefix {
                 .toArray(TagKey[]::new);
     }
 
-    public int maxStackSize() {
-        return 64;
-    }
-
     public TagPrefix enableRecycling() {
         this.generateRecycling = true;
         return this;
@@ -297,6 +334,12 @@ public class TagPrefix {
         return getUnlocalizedName();
     }
 
+
+    @SuppressWarnings("unchecked")
+    public TagKey<Item>[] getItemParentTags() {
+        return tags.stream().filter(TagType::isParentTag).map(type -> type.getTag(this, MaterialRegistry.NULL))
+                .toArray(TagKey[]::new);
+    }
 
 
     public static class Conditions {

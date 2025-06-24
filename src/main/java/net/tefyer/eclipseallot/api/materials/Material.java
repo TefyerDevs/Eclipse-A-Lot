@@ -214,11 +214,6 @@ public class Material {
             return this;
         }
 
-        public Builder rawIngot(){
-            properties.addProperty(PropertyKey.RAW_INGOT);
-            iconSet(MaterialIconSet.DULL);
-            return this;
-        }
 
         public Builder dust(){
             properties.addProperty(PropertyKey.DUST);

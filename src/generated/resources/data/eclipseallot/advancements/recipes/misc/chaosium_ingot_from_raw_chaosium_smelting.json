@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_chaosium": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "eclipseallot:raw_chaosium"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "eclipseallot:chaosium_ingot_from_raw_chaosium_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_chaosium",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "eclipseallot:chaosium_ingot_from_raw_chaosium_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

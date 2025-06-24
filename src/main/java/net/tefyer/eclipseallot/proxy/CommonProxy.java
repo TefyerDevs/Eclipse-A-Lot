@@ -20,9 +20,7 @@ import net.tefyer.eclipseallot.api.tag.TagPrefix;
 import net.tefyer.eclipseallot.datagen.EDataGen;
 import net.tefyer.eclipseallot.client.pack.DynamicResourcePack;
 import net.tefyer.eclipseallot.client.pack.EPackSource;
-import net.tefyer.eclipseallot.datagen.recipes.ERecipies;
 import net.tefyer.eclipseallot.networking.ModMessages;
-import net.tefyer.eclipseallot.pack.DynamicDataPack;
 import net.tefyer.eclipseallot.registry.*;
 
 public class CommonProxy {
@@ -30,14 +28,15 @@ public class CommonProxy {
 
     public CommonProxy() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ERegistries.init(eventBus);
-
         eventBus.register(this);
+
+        ERegistries.init(eventBus);
+        ConfigHolder.init();
+
 
     }
     public static void init(){
         APIUtils.magic_database.init();
-        ConfigHolder.init();
         TagPrefix.init();
         MaterialIconSet.init();
         MaterialIconType.init();
@@ -70,17 +69,6 @@ public class CommonProxy {
                     event.getPackType(),
                     Pack.Position.BOTTOM,
                     DynamicResourcePack::new));
-        } else if(event.getPackType() == PackType.SERVER_DATA){
-            DynamicDataPack.clearServer();
-
-            long startTime = System.currentTimeMillis();
-            ERecipies.recipeRemoval();
-            ERecipies.recipeAddition(DynamicDataPack::addRecipe);
-            Eclipseallot.LOGGER.info("GregTech Data loading took {}ms", System.currentTimeMillis() - startTime);
-
-
-            event.addRepositorySource(new EPackSource(Eclipseallot.MODID+":dynamic_data",
-                    event.getPackType(), Pack.Position.BOTTOM,DynamicDataPack::new));
         }
     }
 }

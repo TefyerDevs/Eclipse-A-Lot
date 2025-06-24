@@ -21,7 +21,9 @@
   "material.eclipseallot.modgin": "uıbpoW",
   "material.eclipseallot.normalium": "ɯnıןɐɯɹoN",
   "material.eclipseallot.polk": "ʞןoԀ",
+  "tagprefix.bolt": "ʇןoᗺ %s",
   "tagprefix.dust": "ʇsnᗡ %s",
+  "tagprefix.gear": "ɹɐǝ⅁ %s",
   "tagprefix.hot_ingot": "ʇobuI %s ʇoH",
   "tagprefix.ingot": "ʇobuI %s",
   "tagprefix.mechanical_arm": "ɯɹⱯ ןɐɔıuɐɥɔǝW %s",
@@ -29,5 +31,6 @@
   "tagprefix.piston": "uoʇsıԀ %s",
   "tagprefix.plate": "ǝʇɐןԀ %s",
   "tagprefix.pump": "dɯnԀ %s",
-  "tagprefix.raw": "%s ʍɐᴚ"
+  "tagprefix.raw": "%s ʍɐᴚ",
+  "tagprefix.ring": "buıᴚ %s"
 }
