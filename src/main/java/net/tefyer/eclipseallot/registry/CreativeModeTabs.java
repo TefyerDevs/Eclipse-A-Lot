@@ -7,6 +7,7 @@ import net.tefyer.eclipseallot.Eclipseallot;
 import net.tefyer.eclipseallot.api.registry.ERegistrate;
 import net.tefyer.eclipseallot.api.chemical.ChemicalHelper;
 import net.tefyer.eclipseallot.api.tag.TagPrefix;
+import net.tefyer.eclipseallot.api.tiers.TechTiers;
 import org.jetbrains.annotations.NotNull;
 
 import static net.tefyer.eclipseallot.proxy.CommonProxy.REGISTRATE;
@@ -19,7 +20,12 @@ public class CreativeModeTabs {
                                     Eclipseallot.NAME + " Material Items"))
                             .build())
             .register();
-
+    public static RegistryEntry<CreativeModeTab> MACHINE = REGISTRATE.defaultCreativeTab("machine",
+                    builder -> builder.displayItems(new RegistrateDisplayItemsGenerator("machine", REGISTRATE))
+                            .icon(() -> MachineRegistry.ALLOY_FURNACE[TechTiers.LOW.usage].asStack())
+                            .title(REGISTRATE.addLang("itemGroup", Eclipseallot.id("machine"), Eclipseallot.NAME + " Machines"))
+                            .build())
+            .register();
     public static void init() {
     }
 

@@ -8,20 +8,28 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
+import dev.latvian.mods.kubejs.item.custom.ArmorItemBuilder;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 import net.tefyer.eclipseallot.api.APIUtils;
+import net.tefyer.eclipseallot.api.data.pairs.ValuePair;
 import net.tefyer.eclipseallot.api.materials.Material;
 import net.tefyer.eclipseallot.api.materials.MaterialItem;
+import org.apache.commons.lang3.function.TriFunction;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -30,7 +38,9 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ERegistrate extends Registrate {
@@ -39,12 +49,9 @@ public class ERegistrate extends Registrate {
     private final AtomicBoolean registered = new AtomicBoolean(false);
 
     public Object2ObjectOpenHashMap<String, ItemEntry<MaterialItem>> materialItems = new Object2ObjectOpenHashMap<>();
-
     public ERegistrate(String modid) {
         super(modid);
     }
-
-
 
     @Override
     public <T extends Item> @NotNull ItemBuilder<T, Registrate> item(String name,
@@ -107,6 +114,7 @@ public class ERegistrate extends Registrate {
     }
 
     public void registerRegistrate() {
+
         registerEventListeners(FMLJavaModLoadingContext.get().getModEventBus());
     }
 

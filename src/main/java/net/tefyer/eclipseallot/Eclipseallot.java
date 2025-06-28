@@ -7,14 +7,18 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.tefyer.eclipseallot.api.APIUtils;
+import net.tefyer.eclipseallot.client.LightWrapper;
 import net.tefyer.eclipseallot.proxy.ClientProxy;
 import net.tefyer.eclipseallot.proxy.CommonProxy;
 import org.slf4j.Logger;
+
 
 import java.nio.file.Path;
 
@@ -28,6 +32,7 @@ public class Eclipseallot {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public Eclipseallot() {
+
         Eclipseallot.init();
         APIUtils.instance = this;
         DistExecutor.unsafeRunForDist(()-> ClientProxy::new, ()-> CommonProxy::new);
@@ -40,7 +45,6 @@ public class Eclipseallot {
     public static ResourceLocation id(String name){
         return ResourceLocation.fromNamespaceAndPath(MODID, APIUtils.Formatting.toLowerCaseUnder(name));
     }
-
 
     /**
      * @return if the FML environment is a client

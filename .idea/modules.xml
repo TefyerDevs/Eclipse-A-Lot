@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eclipsealot.iml" filepath="$PROJECT_DIR$/.idea/modules/eclipsealot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eclipsealot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/eclipsealot.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/eclipsealot.test.iml" filepath="$PROJECT_DIR$/.idea/modules/eclipsealot.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Eclipse-A-Lot.iml" filepath="$PROJECT_DIR$/.idea/Eclipse-A-Lot.iml" />
     </modules>
   </component>
 </project>

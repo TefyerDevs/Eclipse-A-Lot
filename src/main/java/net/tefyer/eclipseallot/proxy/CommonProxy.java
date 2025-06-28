@@ -46,8 +46,8 @@ public class CommonProxy {
         BlockRegistry.init();
         BlockEntityRegistry.init();
 
-        MachineRegistry.init();
         MachineUtilsRegistry.init();
+        MachineRegistry.init();
 
         REGISTRATE.registerRegistrate();
 

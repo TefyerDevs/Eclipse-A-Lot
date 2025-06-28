@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.tefyer.eclipseallot.Eclipseallot;
 import net.tefyer.eclipseallot.api.magic.MPDatabase;
+import net.tefyer.eclipseallot.api.tiers.TechTiers;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -197,6 +198,13 @@ public class APIUtils {
 
         public static double electronsWeight(long electrons) {
             return electrons*MASS_OF_ELECTRON;
+        }
+    }
+    public static class Tiers{
+        public static TechTiers[] tiersBetween(TechTiers minInclusive, TechTiers maxInclusive) {
+            return (TechTiers[]) Arrays.stream(TechTiers.values()).dropWhile(tier -> tier.usage < minInclusive.usage)
+                    .takeWhile(tier -> tier.usage <= maxInclusive.usage)
+                    .toArray();
         }
     }
 }
